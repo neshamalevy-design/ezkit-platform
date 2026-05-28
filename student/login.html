@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>כניסת תלמיד — EZ-kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">דלג לתוכן</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-mark">EZ</span>-kit</a>
+      <nav aria-label="ניווט ראשי">
+        <ul class="nav-links">
+          <li><a href="../index.html">חזרה לדף הבית</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="section">
+    <div class="container">
+      <div class="form-wrap">
+        <div class="page-head text-center">
+          <h1>כניסת תלמיד</h1>
+          <p class="subtitle">הקלידו את קוד התלמיד שקיבלתם מהמורה.</p>
+        </div>
+
+        <!-- UI בלבד — הטופס אינו פונקציונלי בשלב זה -->
+        <form class="card" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+          <div class="field">
+            <label for="student-code">קוד תלמיד / שם משתמש</label>
+            <input type="text" id="student-code" name="student-code" placeholder="לדוגמה: dana123" autocomplete="username">
+          </div>
+          <button type="submit" class="btn btn-peach btn-block btn-lg">כניסה</button>
+          <p class="form-note">שכחת את הקוד? פני אל המורה שלך.</p>
+        </form>
+
+        <p class="form-note">
+          <a href="../teacher/login.html">כניסת מורה &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>EZ-kit — שלד ראשוני</span>
+      <span>להתאים את הדף לתלמיד.</span>
+    </div>
+  </footer>
+</body>
+</html>

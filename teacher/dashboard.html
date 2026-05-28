@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>אזור המורה — EZ-kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">דלג לתוכן</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-mark">EZ</span>-kit</a>
+      <nav aria-label="ניווט ראשי">
+        <ul class="nav-links">
+          <li><a href="dashboard.html">אזור המורה</a></li>
+          <li><a href="../index.html">התנתקות</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="section">
+    <div class="container">
+      <div class="page-head">
+        <h1>שלום, מורה</h1>
+        <p class="subtitle">מכאן את מנהלת את זרימת העבודה: תלמיד &larr; חומר &larr; התאמה.</p>
+      </div>
+
+      <div class="box-grid">
+
+        <!-- אזור 1 — הכיתה שלי (קישור פעיל) -->
+        <a href="class.html" class="box box--blue">
+          <span class="box-step">שלב 1</span>
+          <span class="box-icon" aria-hidden="true">
+            <!-- אייקון: קבוצת תלמידים -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </span>
+          <h3>הכיתה שלי</h3>
+          <p>רשימת התלמידים בכיתתך. הוסיפי תלמידים חדשים, צפי בפרופיל הלמידה שלהם, או עדכני אפיון.</p>
+        </a>
+
+        <!-- אזור 2 — החומרים שלי (אזור עתידי) -->
+        <div class="box box--green" aria-disabled="true">
+          <span class="box-step">שלב 2 · בקרוב</span>
+          <span class="box-icon" aria-hidden="true">
+            <!-- אייקון: מסמכים -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </span>
+          <h3>החומרים שלי</h3>
+          <p>המאגר האישי שלך — דפי עבודה שאת מעלה. כאן את מוסיפה ומנהלת את החומרים שיהוו את הבסיס להתאמות.</p>
+        </div>
+
+        <!-- אזור 3 — צרי התאמה (אזור עתידי, הפעולה המרכזית) -->
+        <div class="box box--peach" aria-disabled="true">
+          <span class="box-step">שלב 3 · בקרוב</span>
+          <span class="box-icon" aria-hidden="true">
+            <!-- אייקון: התאמה / קסם -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4z"></path>
+              <path d="M19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"></path>
+            </svg>
+          </span>
+          <h3>צרי התאמה לתלמיד</h3>
+          <p>בחרי טקסט מהחומרים שלך + תלמיד מהמאופיינים — והמערכת תייצר עבורו גרסה מותאמת.</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>EZ-kit — שלד ראשוני</span>
+      <span>להתאים את הדף לתלמיד.</span>
+    </div>
+  </footer>
+</body>
+</html>

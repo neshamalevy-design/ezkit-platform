@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הכיתה שלי — EZ-kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* דיאלוג הוספת תלמיד — UI בלבד */
+    dialog.add-dialog {
+      border: none;
+      border-radius: var(--radius);
+      padding: 0;
+      max-width: 440px;
+      width: calc(100% - 2rem);
+      box-shadow: var(--shadow-hover);
+      color: var(--color-text);
+    }
+    dialog.add-dialog::backdrop { background: rgba(45, 58, 74, 0.35); }
+    dialog.add-dialog .card { box-shadow: none; border: none; }
+    .dialog-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: var(--space-md);
+    }
+    .dialog-head h2 { margin: 0; }
+    .icon-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.5rem; line-height: 1; color: var(--color-text-soft);
+      padding: 0.2em 0.4em; border-radius: var(--radius-sm);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">דלג לתוכן</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo"><span class="logo-mark">EZ</span>-kit</a>
+      <nav aria-label="ניווט ראשי">
+        <ul class="nav-links">
+          <li><a href="dashboard.html">אזור המורה</a></li>
+          <li><a href="../index.html">התנתקות</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="section">
+    <div class="container">
+      <div class="page-head">
+        <h1>הכיתה שלי</h1>
+        <p class="subtitle">4 תלמידים בכיתה</p>
+      </div>
+
+      <div class="class-toolbar">
+        <button type="button" class="btn btn-blue" id="add-student-btn">+ הוסף תלמיד</button>
+        <span class="subtitle">לחיצה על תלמיד תוביל למסך האפיון (בקרוב).</span>
+      </div>
+
+      <!-- רשימת תלמידי דמה לתצוגה -->
+      <ul class="student-list">
+
+        <li class="student-row">
+          <div class="student-info">
+            <span class="student-avatar" aria-hidden="true">1</span>
+            <span class="student-name">תלמיד 1</span>
+          </div>
+          <div class="student-actions">
+            <span class="status status--done">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5"></path>
+              </svg>
+              מאופיין
+            </span>
+            <button type="button" class="btn btn-ghost">צפי באפיון</button>
+          </div>
+        </li>
+
+        <li class="student-row">
+          <div class="student-info">
+            <span class="student-avatar" aria-hidden="true">2</span>
+            <span class="student-name">תלמיד 2</span>
+          </div>
+          <div class="student-actions">
+            <span class="status status--partial">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 3 a9 9 0 0 1 0 18 z" fill="currentColor" stroke="none"></path>
+              </svg>
+              חלקית
+            </span>
+            <button type="button" class="btn btn-ghost">המשיכי אפיון</button>
+          </div>
+        </li>
+
+        <li class="student-row">
+          <div class="student-info">
+            <span class="student-avatar" aria-hidden="true">3</span>
+            <span class="student-name">תלמיד 3</span>
+          </div>
+          <div class="student-actions">
+            <span class="status status--none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+              טרם אופיין
+            </span>
+            <button type="button" class="btn btn-blue">אפייני</button>
+          </div>
+        </li>
+
+        <li class="student-row">
+          <div class="student-info">
+            <span class="student-avatar" aria-hidden="true">4</span>
+            <span class="student-name">תלמיד 4</span>
+          </div>
+          <div class="student-actions">
+            <span class="status status--done">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5"></path>
+              </svg>
+              מאופיין
+            </span>
+            <button type="button" class="btn btn-ghost">צפי באפיון</button>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </main>
+
+  <!-- דיאלוג הוספת תלמיד — UI בלבד, לא פונקציונלי -->
+  <dialog class="add-dialog" id="add-dialog">
+    <form method="dialog" class="card">
+      <div class="dialog-head">
+        <h2>הוספת תלמיד</h2>
+        <button type="button" class="icon-btn" id="close-dialog-btn" aria-label="סגירה">&times;</button>
+      </div>
+      <div class="field">
+        <label for="student-name">שם התלמיד</label>
+        <input type="text" id="student-name" name="student-name" placeholder="לדוגמה: דנה כהן">
+      </div>
+      <div class="field">
+        <label for="student-class">כיתה</label>
+        <input type="text" id="student-class" name="student-class" placeholder="לדוגמה: ג'2">
+      </div>
+      <button type="submit" class="btn btn-blue btn-block">הוסף לכיתה</button>
+      <p class="form-note">UI בלבד בשלב זה — השמירה תחובר ל-backend בהמשך.</p>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>EZ-kit — שלד ראשוני</span>
+      <span>להתאים את הדף לתלמיד.</span>
+    </div>
+  </footer>
+
+  <script>
+    const dialog = document.getElementById('add-dialog');
+    document.getElementById('add-student-btn').addEventListener('click', () => dialog.showModal());
+    document.getElementById('close-dialog-btn').addEventListener('click', () => dialog.close());
+  </script>
+</body>
+</html>

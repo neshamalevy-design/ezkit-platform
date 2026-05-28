@@ -1,0 +1,673 @@
+/* ==========================================================================
+   EZ-kit — שלד ראשוני
+   styles.css מרכזי. כל הצבעים מוגדרים כ-CSS variables (החלפה במקום אחד).
+   פלטה מבוססת עקרונות נגישות חושית לחינוך מיוחד (ראו design.md).
+   ========================================================================== */
+
+:root {
+  /* --- פלטת צבעים (design.md, החלטה 2) --- */
+  --color-bg: #FAF6F0;        /* קרם רך — רקע ראשי */
+  --color-surface: #FFFFFF;   /* משטח קלפים מעל הרקע */
+  --color-text: #2D3A4A;      /* אפור-כחול כהה — כל הטקסטים */
+  --color-text-soft: #5A6675; /* טקסט משני, גרסה רכה של צבע הטקסט */
+
+  --color-blue: #7BAFD4;      /* תכלת רגוע — מורה, accents, links */
+  --color-green: #8FBC9B;     /* ירוק מרווה — החומרים שלי, חיובי */
+  --color-peach: #E8A87C;     /* כתום אפרסק — צרי התאמה, אזהרה עדינה */
+  --color-gray: #D7D2CA;      /* אפור נייטרלי — טרם אופיין */
+
+  /* גרסאות כהות לטקסט/קצוות/אייקונים — נבחרו לעמוד ב-WCAG AA (4.5:1)
+     גם על רקע קרם/לבן וגם על הטינטים הבהירים של כל אזור */
+  --color-blue-deep: #2E6189;
+  --color-green-deep: #43704F;
+  --color-peach-deep: #9E5526;
+
+  /* רקעים רכים לאזורים (טינט בהיר של צבע האזור) */
+  --tint-blue: #E8F1F8;
+  --tint-green: #EBF3ED;
+  --tint-peach: #FBEEE3;
+
+  /* --- טיפוגרפיה --- */
+  --font-base: 'Rubik', 'Heebo', 'Assistant', system-ui, -apple-system, sans-serif;
+  --fs-body: 1.125rem;   /* 18px — נוח מעל מינימום 16px */
+  --fs-small: 1rem;      /* 16px — מינימום מותר */
+  --fs-h1: 2.5rem;       /* 40px */
+  --fs-h2: 1.75rem;      /* 28px */
+  --fs-h3: 1.375rem;     /* 22px */
+  --lh-body: 1.7;
+
+  /* --- מרחב ועיצוב --- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.75rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 20px rgba(45, 58, 74, 0.08);
+  --shadow-hover: 0 8px 28px rgba(45, 58, 74, 0.14);
+  --maxw: 1100px;
+  --transition: 180ms ease;
+}
+
+/* --- אפשרות הגדלה: כיבוד הגדרת המשתמש בדפדפן (rem מבוסס) --- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* מכבד הגדלת פונט בדפדפן */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ניקוד ועברית נכונים */
+h1, h2, h3 {
+  line-height: 1.3;
+  margin: 0 0 var(--space-sm);
+  font-weight: 600;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+p { margin: 0 0 var(--space-sm); }
+
+a {
+  color: var(--color-blue-deep);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; display: block; }
+
+/* --- מצב פוקוס ברור (נגישות, design.md דרישה 4) --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.box:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-blue-deep);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   פריסה כללית
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+.section {
+  padding-block: var(--space-lg);
+}
+
+.page-narrow {
+  max-width: 760px;
+}
+
+/* כותרת מסך פנימי */
+.page-head {
+  margin-bottom: var(--space-md);
+}
+.page-head .subtitle {
+  color: var(--color-text-soft);
+  font-size: var(--fs-body);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Header / Navigation
+   ========================================================================== */
+
+.site-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid rgba(45, 58, 74, 0.08);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+.logo:hover { text-decoration: none; }
+.logo .logo-mark { color: var(--color-blue-deep); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: var(--color-text);
+  font-size: var(--fs-small);
+}
+
+/* ==========================================================================
+   כפתורים
+   טקסט כהה על רקע פסטל = ניגודיות WCAG AA (לבן על פסטל נכשל)
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  font-family: inherit;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 2px solid var(--color-text);
+  border-radius: var(--radius-sm);
+  padding: 0.7em 1.6em;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+    background-color var(--transition);
+  text-align: center;
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.btn:active { transform: translateY(0); }
+
+.btn-blue   { background: var(--color-blue);  border-color: var(--color-blue-deep); }
+.btn-green  { background: var(--color-green); border-color: var(--color-green-deep); }
+.btn-peach  { background: var(--color-peach); border-color: var(--color-peach-deep); }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--color-text);
+}
+
+.btn-block { width: 100%; }
+.btn-lg { font-size: 1.25rem; padding: 0.8em 2em; }
+
+/* ==========================================================================
+   Hero (Homepage בלבד)
+   ========================================================================== */
+
+.hero {
+  padding-block: var(--space-xl) var(--space-lg);
+}
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: var(--space-lg);
+}
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+.hero-tagline {
+  font-size: 1.375rem;
+  color: var(--color-text-soft);
+  margin-bottom: var(--space-md);
+}
+.hero-cta {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+.hero-art {
+  display: flex;
+  justify-content: center;
+}
+.hero-art img {
+  width: auto;
+  max-height: 360px;
+  filter: drop-shadow(0 12px 24px rgba(45, 58, 74, 0.12));
+}
+
+/* גוף ההסבר ב-Homepage */
+.intro .container { max-width: 820px; }
+.intro p {
+  font-size: 1.1875rem;
+}
+.intro p strong { font-weight: 600; }
+
+/* ==========================================================================
+   קופסאות Dashboard (3 אזורים) — כרטיסים
+   כל אזור: אייקון + תווית + צבע ייחודי (לא צבע בלבד)
+   ========================================================================== */
+
+.box-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background: var(--color-surface);
+  border: 1px solid rgba(45, 58, 74, 0.08);
+  border-top: 6px solid var(--color-gray);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  box-shadow: var(--shadow);
+  color: var(--color-text);
+  transition: transform var(--transition), box-shadow var(--transition);
+  height: 100%;
+}
+a.box:hover {
+  text-decoration: none;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.box .box-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  margin-bottom: var(--space-xs);
+}
+.box .box-icon svg { width: 30px; height: 30px; }
+.box h3 { margin: 0; }
+.box p { color: var(--color-text-soft); margin: 0; font-size: var(--fs-small); }
+.box .box-step {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+  letter-spacing: 0.02em;
+}
+
+/* וריאציות צבע לכל אזור */
+.box--blue  { border-top-color: var(--color-blue-deep); }
+.box--blue  .box-icon { background: var(--tint-blue);  color: var(--color-blue-deep); }
+.box--green { border-top-color: var(--color-green-deep); }
+.box--green .box-icon { background: var(--tint-green); color: var(--color-green-deep); }
+.box--peach { border-top-color: var(--color-peach-deep); }
+.box--peach .box-icon { background: var(--tint-peach); color: var(--color-peach-deep); }
+
+/* ==========================================================================
+   טפסים (login, הוספת תלמיד)
+   ========================================================================== */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid rgba(45, 58, 74, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-lg);
+}
+.form-wrap {
+  max-width: 440px;
+  margin-inline: auto;
+}
+
+.field {
+  margin-bottom: var(--space-md);
+}
+.field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+.field input {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid rgba(45, 58, 74, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 0.7em 0.9em;
+}
+.field input::placeholder { color: var(--color-text-soft); opacity: 0.7; }
+.field input:focus {
+  border-color: var(--color-blue-deep);
+  outline: none;
+}
+
+.form-note {
+  text-align: center;
+  color: var(--color-text-soft);
+  font-size: var(--fs-small);
+  margin-top: var(--space-md);
+}
+
+/* ==========================================================================
+   "הכיתה שלי" — רשימת תלמידים
+   ========================================================================== */
+
+.class-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+.student-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.student-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  background: var(--color-surface);
+  border: 1px solid rgba(45, 58, 74, 0.08);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  box-shadow: var(--shadow);
+}
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.student-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--tint-blue);
+  color: var(--color-blue-deep);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.student-name { font-weight: 600; }
+.student-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* תוויות סטטוס אפיון — צורה+אייקון+צבע+טקסט (לא צבע בלבד) */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  padding: 0.35em 0.8em;
+  border-radius: 999px;
+  border: 2px solid;
+}
+.status svg { width: 18px; height: 18px; }
+.status--done {
+  background: var(--tint-green);
+  color: var(--color-green-deep);
+  border-color: var(--color-green-deep);
+}
+.status--partial {
+  background: var(--tint-peach);
+  color: var(--color-peach-deep);
+  border-color: var(--color-peach-deep);
+}
+.status--none {
+  background: #F0EDE8;
+  color: var(--color-text-soft);
+  border-color: #B9B2A8;
+}
+
+/* ==========================================================================
+   רשימת דפי עבודה של התלמיד — רשימה (לא קופסאות), עם סטטוס בוצע/לא בוצע
+   ========================================================================== */
+
+.worklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.worklist-item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-text);
+  background: transparent;
+  border-bottom: 1px solid rgba(45, 58, 74, 0.14);
+  transition: background-color var(--transition);
+}
+.worklist-item:first-child a {
+  border-top: 1px solid rgba(45, 58, 74, 0.14);
+}
+.worklist-item a:hover {
+  text-decoration: none;
+  background: var(--tint-blue);
+}
+.worklist-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+  font-size: var(--fs-body);
+}
+.worklist-title svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-blue-deep);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   דף עבודה מונגש (תצוגת תלמיד) — סרגל נגישות + משימות בתוך הדף
+   ========================================================================== */
+
+.a11y-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-surface);
+  border: 1px solid rgba(45, 58, 74, 0.1);
+  border-radius: var(--radius);
+  padding: var(--space-sm);
+  box-shadow: var(--shadow);
+}
+.a11y-bar .a11y-label {
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--color-text-soft);
+  margin-inline-end: var(--space-xs);
+}
+.a11y-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: inherit;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid rgba(45, 58, 74, 0.18);
+  border-radius: 999px;
+  padding: 0.45em 0.9em;
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+.a11y-btn svg { width: 18px; height: 18px; }
+.a11y-btn:hover { border-color: var(--color-blue-deep); background: var(--tint-blue); }
+.a11y-note {
+  font-size: var(--fs-small);
+  color: var(--color-text-soft);
+  margin-top: var(--space-xs);
+}
+
+.worksheet {
+  background: var(--color-surface);
+  border: 1px solid rgba(45, 58, 74, 0.1);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-lg);
+}
+.worksheet h2 { margin-top: 0; }
+
+/* משימה משובצת בתוך הדף (לא מסך נפרד) */
+.task {
+  background: var(--tint-blue);
+  border-inline-start: 5px solid var(--color-blue-deep);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  margin-block: var(--space-md);
+}
+.task-label {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--color-blue-deep);
+  margin-bottom: var(--space-xs);
+}
+
+/* ==========================================================================
+   Empty state & Placeholders
+   ========================================================================== */
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-lg);
+  border: 2px dashed rgba(45, 58, 74, 0.2);
+  border-radius: var(--radius);
+  color: var(--color-text-soft);
+}
+
+/* תיבת placeholder עתידית — "כאן יבוא X" */
+.placeholder {
+  background: var(--color-surface);
+  border: 2px dashed rgba(45, 58, 74, 0.22);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-text-soft);
+}
+.placeholder h3 { color: var(--color-text); }
+.placeholder .placeholder-tag {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+  background: var(--color-bg);
+  border: 1px solid rgba(45, 58, 74, 0.15);
+  border-radius: 999px;
+  padding: 0.25em 0.9em;
+  margin-bottom: var(--space-xs);
+}
+
+.placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  flex-shrink: 0;
+  margin-top: var(--space-xl);
+  padding-block: var(--space-md);
+  background: var(--color-surface);
+  border-top: 1px solid rgba(45, 58, 74, 0.08);
+  color: var(--color-text-soft);
+  font-size: var(--fs-small);
+}
+.site-footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.stack > * + * { margin-top: var(--space-md); }
+.text-center { text-align: center; }
+.mt-lg { margin-top: var(--space-lg); }
+
+/* קישור "דלג לתוכן" — נגישות מקלדת */
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-sm);
+  top: -100px;
+  background: var(--color-text);
+  color: #fff;
+  padding: 0.6em 1em;
+  border-radius: var(--radius-sm);
+  z-index: 100;
+  transition: top var(--transition);
+}
+.skip-link:focus { top: var(--space-sm); text-decoration: none; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  :root { --fs-h1: 2rem; --fs-h2: 1.5rem; }
+  .hero .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-art { order: -1; }
+  .hero-art img { max-height: 260px; }
+  .hero-cta { justify-content: center; }
+  .student-row { flex-direction: column; align-items: stretch; }
+  .student-actions { justify-content: space-between; }
+}
+
+/* כיבוד העדפת תנועה מופחתת */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .btn:hover, a.box:hover { transform: none; }
+}

@@ -1,3 +1,5 @@
-# גרעין פדגוגי — פרטי, מקומי בלבד. לא נדחף לריפו הציבורי.
-# מקור-אמת מקומי; גיבוי בריפו הפרטי bootcamp (master-library/ez-kit-core-mirror/).
+# גרעין פדגוגי + דוגמאות-עיצוב — פרטי, לא נדחפים לריפו הציבורי.
+# בית מקור-האמת: ריפו פרטי bootcamp → master-library/ez-kit-core-mirror/ (כולל samples/).
+# ezkit-platform = הפלטפורמה בלבד.
 core/
+samples/
